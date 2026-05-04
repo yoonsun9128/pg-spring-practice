@@ -7,3 +7,7 @@ spring:
     password:
     driver-class-name: org.h2.Driver
 #db를 파일 모드로 변경하는것 -> 영속성을 생성
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
