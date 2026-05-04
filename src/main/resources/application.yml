@@ -6,8 +6,16 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+  output:
+    ansi:
+      enabled: always #출력문 컬러변경
 #db를 파일 모드로 변경하는것 -> 영속성을 생성
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update #테이블이 없을 때만 생성 되도록 재 수정
+      ddl-auto: update #테이블이 없을 때만 생성 되도록 재설정
+    properties:
+      hibernate:
+        format_sql: true
+        highlight_sql: true
+        use_sql_comments: true
