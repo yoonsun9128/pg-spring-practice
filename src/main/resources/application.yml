@@ -10,4 +10,4 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update #테이블이 없을 때만 생성 되도록 재 수정
