@@ -20,4 +20,5 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //AUTO_INCREMENT
 	private int id;
 	private String title;
+	private String content;
 }
