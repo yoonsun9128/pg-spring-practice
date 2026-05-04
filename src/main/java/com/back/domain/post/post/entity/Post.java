@@ -12,19 +12,24 @@ post를 2개 쓴이유 글 안에 여러개의 글이 있기 때문에
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor //사실 제목과 내용은 수정이 가능하니 final의 형식이 맞지는 않는다.
+//@NoArgsConstructor //사실 제목과 내용은 수정이 가능하니 final의 형식이 맞지는 않는다.
 
 public class Post {
 	@Id //PK
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //AUTO_INCREMENT
-	private int id;
+	private final int id;
 	private String title;
 	@Column(columnDefinition = "TEXT") //필드 수정 char->text : db를 꼭 삭제해야한다
 	private String content;
 
 	public Post(String title, String content) {
+		this.id = 0; //fianl을 넣을시 초기값에 id의 값을 넣어줘야하는 불편함
 		this.title = title;
 		this.content = content;
+	}
+	//인자 없는 생성자
+	public Post() {
+		this("", "");
 	}
 }
 
