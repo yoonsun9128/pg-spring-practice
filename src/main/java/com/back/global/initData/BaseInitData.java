@@ -18,11 +18,11 @@ public class BaseInitData {
 		return args -> {
 			System.out.println("기본 데이터가 초기화되었습니다.");
 			//TODO db 접속할 로직을 넣을 예정
-//			postRepository.count();
-			//이곳에다가 넣게 되면 재 실행 될때마다 계속 생성될것이다.
-			Post post = new Post();
-			post.setTitle("제목 1");
-			postRepository.save(post);
+			if (postRepository.count() > 0) return;
+
+			Post post1 = postRepository.save(new Post("제목 1", "내용 1"));
+			Post post2 = postRepository.save(new Post("제목 2", "내용 2"));
+
 		};
 	}
 }
