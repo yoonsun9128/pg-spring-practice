@@ -7,6 +7,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Optional;
+
 //전체적으로 영향역을 미치는 곳 global 파트로 넣는다
 @Configuration
 public class BaseInitData {
@@ -16,14 +18,26 @@ public class BaseInitData {
 	@Bean
 	ApplicationRunner baseInitDataApplicationRunner() {
 		return args -> {
-			System.out.println("기본 데이터가 초기화되었습니다.");
-			//TODO db 접속할 로직을 넣을 예정
-			if (postRepository.count() > 0) return;
-
-			Post post1 = postRepository.save(new Post("제목 1", "내용 1"));
-			Post post2 = postRepository.save(new Post("제목 2", "내용 2"));
+			work1();
+			work2();
 
 		};
+	}
+	void work1() {
+		if (postRepository.count() > 0) return;
+
+		Post post1 = postRepository.save(new Post("제목 1", "내용 1"));
+		Post post2 = postRepository.save(new Post("제목 2", "내용 2"));
+
+		System.out.println("기본 데이터가 초기화되었습니다.");
+	}
+
+	void work2() {
+		Optional<Post> opPost1 = postRepository.findById(1);
+		// SELECT * FROM post WHERE id = 1;
+		Post post1 = opPost1.get();
+
+		System.out.println("post1 : " + post1);
 	}
 }
 

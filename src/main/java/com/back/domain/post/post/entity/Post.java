@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /*
 post를 2개 쓴이유 글 안에 여러개의 글이 있기 때문에
@@ -14,6 +15,7 @@ post를 2개 쓴이유 글 안에 여러개의 글이 있기 때문에
 @Getter
 @Setter
 @RequiredArgsConstructor //final 붙은 애들만 초기 셋팅 값으로 지정한다.
+@ToString
 public class Post {
 	@Id //PK
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //AUTO_INCREMENT
@@ -21,4 +23,13 @@ public class Post {
 	private final String title;
 	@Column(columnDefinition = "TEXT") //필드 수정 char->text : db를 꼭 삭제해야한다
 	private final String content;
+
+	public Post() {
+		this.title ="";
+		this.content ="";
+	}
 }
+
+/*
+*jpa는 디폴트 생성자가 필요하다.
+* */
