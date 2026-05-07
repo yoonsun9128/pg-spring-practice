@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 /*
@@ -28,7 +29,15 @@ public class PostService {
 	}
 
 	public Optional<Post> findById(int id) {
+
 		return postRepository.findById(id);
+	}
+
+	public void modify(Post post, String title, String content) {
+		post.setTitle(title);
+		post.setContent(content);
+		post.setModifyDate(LocalDateTime.now());
+		postRepository.save(post);
 	}
 }
 
