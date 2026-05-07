@@ -14,12 +14,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update #테이블이 없을 때만 생성 되도록 재설정
-    properties:
+    properties: #SQL 로그가 잘 나오도록 수정
       hibernate:
         format_sql: true
         highlight_sql: true
         use_sql_comments: true
-logging:
+logging: #SQL 로그에서 insert/select의 값과 ?에 들어가는 값 출력
   level:
     org.hibernate.orm.jdbc.bind: TRACE
     org.hibernate.orm.jdbc.extract: TRACE

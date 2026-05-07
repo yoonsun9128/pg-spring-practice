@@ -13,8 +13,13 @@ import java.util.Optional;
 //전체적으로 영향역을 미치는 곳 global 파트로 넣는다
 @Configuration
 public class BaseInitData {
-	@Autowired
+
 	private PostService postService;
+
+	@Autowired
+	public BaseInitData(PostService postService) {
+		this.postService = postService;
+	}
 
 	@Bean
 	ApplicationRunner baseInitDataApplicationRunner() {
