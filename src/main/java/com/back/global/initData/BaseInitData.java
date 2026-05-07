@@ -16,7 +16,7 @@ public class BaseInitData {
 
 	private PostService postService;
 
-	@Autowired
+//	@Autowired //생성자 주입에서는 해당 어노테이션을 생략할 수 있다.
 	public BaseInitData(PostService postService) {
 		this.postService = postService;
 	}
