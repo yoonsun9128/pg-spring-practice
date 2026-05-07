@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
@@ -18,7 +19,9 @@ import java.util.Optional;
 //@AllArgsConstructor //-> 클래스의 모든 필드를 인자로 받는 생성자 자동 생성
 @RequiredArgsConstructor // final 필드만 인자로 받는 생성자 자동 생성
 public class BaseInitData {
-
+	@Autowired
+	@Lazy
+	private BaseInitData self;
 	private final PostService postService; //RequiredArgsConstructor + final
 
 	/*
@@ -34,12 +37,15 @@ public class BaseInitData {
 	@Bean
 	ApplicationRunner baseInitDataApplicationRunner() {
 		return args -> {
-			work1();
-			work2();
+			self.work1();
+			self.work2();
 
 		};
 	}
 
+	/* Transactional
+	내부 호출로는 발동이 되지 않는다
+	* */
 	@Transactional
 	void work1() {
 		if (postService.count() > 0) return;
