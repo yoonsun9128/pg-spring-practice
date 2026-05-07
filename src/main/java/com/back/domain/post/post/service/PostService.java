@@ -2,6 +2,7 @@ package com.back.domain.post.post.service;
 
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,9 @@ import java.util.Optional;
 * @Service : 비즈니스 로직 계층
 * */
 @Service
+@RequiredArgsConstructor
 public class PostService {
-	@Autowired
-	private PostRepository postRepository; //spring이 자동으로 의존성을 주입
+	private final PostRepository postRepository; //spring이 자동으로 의존성을 주입
 
 	public long count() {
 		return postRepository.count();

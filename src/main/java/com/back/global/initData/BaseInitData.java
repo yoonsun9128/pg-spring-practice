@@ -4,6 +4,7 @@ import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.repository.PostRepository;
 import com.back.domain.post.post.service.PostService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -13,10 +14,12 @@ import java.util.Optional;
 
 //전체적으로 영향역을 미치는 곳 global 파트로 넣는다
 @Configuration
-@AllArgsConstructor
+//@AllArgsConstructor //-> 클래스의 모든 필드를 인자로 받는 생성자 자동 생성
+@RequiredArgsConstructor // final 필드만 인자로 받는 생성자 자동 생성
 public class BaseInitData {
 
-	private PostService postService;
+	private final PostService postService; //RequiredArgsConstructor + final
+	private int callCount = 0; //주입받을라고 쓴게 아니라 내부적으로 사용 하기 위해
 
 	/*
 	* AllArgsConstructor
@@ -34,6 +37,7 @@ public class BaseInitData {
 			work1();
 			work2();
 
+			callCount++;
 		};
 	}
 	void work1() {
