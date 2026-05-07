@@ -4,10 +4,16 @@ import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Component //이 클래스를 Spring이 관리해줘
+/*
+* @Component vs @Service 차이
+* @Component : 스프링이 관리하는 객체
+* @Service : 비즈니스 로직 계층
+* */
+@Service
 public class PostService {
 	@Autowired
 	private PostRepository postRepository; //spring이 자동으로 의존성을 주입
@@ -24,6 +30,7 @@ public class PostService {
 		return postRepository.findById(id);
 	}
 }
+
 
 //비즈니스 로직을 처리하게 된다
 // Controller → Service → Repository
