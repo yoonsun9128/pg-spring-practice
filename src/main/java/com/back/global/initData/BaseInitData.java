@@ -3,6 +3,7 @@ package com.back.global.initData;
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.repository.PostRepository;
 import com.back.domain.post.post.service.PostService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -12,14 +13,20 @@ import java.util.Optional;
 
 //전체적으로 영향역을 미치는 곳 global 파트로 넣는다
 @Configuration
+@AllArgsConstructor
 public class BaseInitData {
 
 	private PostService postService;
 
-//	@Autowired //생성자 주입에서는 해당 어노테이션을 생략할 수 있다.
-	public BaseInitData(PostService postService) {
-		this.postService = postService;
-	}
+	/*
+	* AllArgsConstructor
+	* 을 사용시 밑의 생성자 주입한 부분을 굳이 넣을 필요 없다.
+	* 밑의 코드의 내용이 모든걸 입력받은데로 생성하기 때문에 하나의 어노테이션으로 대처할 수 있다.
+	* */
+////	@Autowired //생성자 주입에서는 해당 어노테이션을 생략할 수 있다.
+//	public BaseInitData(PostService postService) {
+//		this.postService = postService;
+//	}
 
 	@Bean
 	ApplicationRunner baseInitDataApplicationRunner() {
