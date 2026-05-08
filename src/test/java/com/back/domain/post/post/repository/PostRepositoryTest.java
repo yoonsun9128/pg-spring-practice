@@ -26,7 +26,7 @@ public class PostRepositoryTest {
 	@Test
 	@DisplayName("글 생성")
 	@Transactional
-	@Rollback
+		// @Rollback(false) // 이게 없다면 test 폴더에서의 @Transactional 은 기본적으로 Rollback 된다.
 	void t2() {
 		Post post = new Post("제목 new", "내용 new");
 		assertThat(post.getId()).isEqualTo(0);
