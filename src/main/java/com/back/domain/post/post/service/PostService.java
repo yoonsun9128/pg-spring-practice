@@ -60,7 +60,7 @@ public class PostService {
 		post.setTitle(title);
 		post.setContent(content);
 
-		postRepository.save(post);
+//		postRepository.save(post);
 	}
 
 	public Post write(String title, String content) {
