@@ -33,10 +33,26 @@ public class PostService {
 		return postRepository.findById(id);
 	}
 
+//	public void modify(Post post, String title, String content) {
+//		post.setTitle(title);
+//		post.setContent(content);
+//		post.setModifyDate(LocalDateTime.now());
+//		postRepository.save(post);
+//	}
 	public void modify(Post post, String title, String content) {
-		post.setTitle(title);
-		post.setContent(content);
-		post.setModifyDate(LocalDateTime.now());
+		boolean changed = false;
+		if(!post.getTitle().equals(title)) {
+			post.setTitle(title);
+			changed = true;
+		}
+		if(!post.getContent().equals(content)) {
+			post.setContent(content);
+			changed = true;
+		}
+		if (changed) {
+			post.setModifyDate(LocalDateTime.now());
+		}
+
 		postRepository.save(post);
 	}
 
