@@ -85,7 +85,7 @@ public class BaseInitData {
 	void work4() {
 		Optional<Post> opPost1 = postService.findById(1);
 		Post post1 = opPost1.get();
-		postService.modify(post1, "제목 1 수정", "내용 1 수정");
+		postService.modify(post1, "제목 1", "내용 1 수정");
 	}
 }
 

@@ -39,19 +39,26 @@ public class PostService {
 //		post.setModifyDate(LocalDateTime.now());
 //		postRepository.save(post);
 //	}
+//	public void modify(Post post, String title, String content) {
+//		boolean changed = false;
+//		if(!post.getTitle().equals(title)) {
+//			post.setTitle(title);
+//			changed = true;
+//		}
+//		if(!post.getContent().equals(content)) {
+//			post.setContent(content);
+//			changed = true;
+//		}
+//		if (changed) {
+//			post.setModifyDate(LocalDateTime.now());
+//		}
+//
+//		postRepository.save(post);
+//	}
+	//엔티디변경에 따른 자동 생성일자 변경하는 어노테이션 추가
 	public void modify(Post post, String title, String content) {
-		boolean changed = false;
-		if(!post.getTitle().equals(title)) {
-			post.setTitle(title);
-			changed = true;
-		}
-		if(!post.getContent().equals(content)) {
-			post.setContent(content);
-			changed = true;
-		}
-		if (changed) {
-			post.setModifyDate(LocalDateTime.now());
-		}
+		post.setTitle(title);
+		post.setContent(content);
 
 		postRepository.save(post);
 	}

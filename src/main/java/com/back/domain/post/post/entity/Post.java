@@ -2,6 +2,9 @@ package com.back.domain.post.post.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
@@ -15,13 +18,15 @@ post를 2개 쓴이유 글 안에 여러개의 글이 있기 때문에
 @Setter
 @ToString
 @NoArgsConstructor //사실 제목과 내용은 수정이 가능하니 final의 형식이 맞지는 않는다.
-
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
 	@Id //PK
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //AUTO_INCREMENT
 //	private final int id;
 	private int id;
+	@CreatedDate
 	private LocalDateTime createDate;
+	@LastModifiedDate
 	private LocalDateTime modifyDate;
 	private String title;
 	@Column(columnDefinition = "TEXT") //필드 수정 char->text : db를 꼭 삭제해야한다
@@ -29,8 +34,9 @@ public class Post {
 
 	public Post(String title, String content) {
 //		this.id = 0; //fianl을 넣을시 초기값에 id의 값을 넣어줘야하는 불편함
-		this.createDate = LocalDateTime.now();
-		this.modifyDate = this.createDate;
+		//CreatedDate 이런 어노테이션 이용으로 해당 부분이 필요 없어짐
+//		this.createDate = LocalDateTime.now();
+//		this.modifyDate = this.createDate;
 		this.title = title;
 		this.content = content;
 	}
