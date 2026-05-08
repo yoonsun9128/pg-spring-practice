@@ -1,11 +1,8 @@
 spring:
   application:
     name: back
-  datasource:
-    url: jdbc:h2:./db_dev;MODE=MySQL
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+  profiles:
+    active: dev #spring 부트를 실행할때 프로파일을 명시하지 않으면 dev가 활성화 된다는 뜻
   output:
     ansi:
       enabled: always #출력문 컬러변경
