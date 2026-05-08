@@ -41,7 +41,7 @@ public class BaseInitData {
 			self.work2();
 			self.work4();
 
-			new Thread(() -> self.work3()).start(); // 별도의 Thread 를 사용한 이유 : work3 메서드에서 예외가 발생해도 스프링부트가 꺼지지 않도록
+//			new Thread(() -> self.work3()).start(); // 별도의 Thread 를 사용한 이유 : work3 메서드에서 예외가 발생해도 스프링부트가 꺼지지 않도록
 
 		};
 	}
