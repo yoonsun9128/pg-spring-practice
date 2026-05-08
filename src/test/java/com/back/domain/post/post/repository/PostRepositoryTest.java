@@ -6,11 +6,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ActiveProfiles("test")
 @SpringBootTest
+@Transactional
+// @Rollback(false) // 이게 없다면 test 폴더에서의 @Transactional 은 기본적으로 Rollback 된다.
 public class PostRepositoryTest {
 	@Autowired
 	private PostRepository postRepository;
@@ -25,8 +29,6 @@ public class PostRepositoryTest {
 
 	@Test
 	@DisplayName("글 생성")
-	@Transactional
-		// @Rollback(false) // 이게 없다면 test 폴더에서의 @Transactional 은 기본적으로 Rollback 된다.
 	void t2() {
 		Post post = new Post("제목 new", "내용 new");
 		assertThat(post.getId()).isEqualTo(0);
