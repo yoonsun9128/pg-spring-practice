@@ -1,5 +1,7 @@
 package com.back.global.initData;
 
+import com.back.domain.member.member.entity.Member;
+import com.back.domain.member.member.service.MemberService;
 import com.back.domain.post.post.entity.Post;
 import com.back.domain.post.post.repository.PostRepository;
 import com.back.domain.post.post.service.PostService;
@@ -23,7 +25,7 @@ public class BaseInitData {
 	@Lazy
 	private BaseInitData self;
 	private final PostService postService; //RequiredArgsConstructor + final
-
+	private final MemberService memberService;
 	/*
 	* AllArgsConstructor
 	* 을 사용시 밑의 생성자 주입한 부분을 굳이 넣을 필요 없다.
@@ -51,8 +53,14 @@ public class BaseInitData {
 	* */
 	@Transactional
 	void work1() {
-		if (postService.count() > 0) return;
+		if (memberService.count() >0) return;
+		Member memberSystem = memberService.join(new Member("system", "1234", "시스템"));
+		Member memberAdmin = memberService.join(new Member("admin", "1234", "관리자"));
+		Member member1 = memberService.join(new Member("user1", "1234", "유저1"));
+		Member member2 = memberService.join(new Member("user2", "1234", "유저2"));
+		Member member3 = memberService.join(new Member("user3", "1234", "유저3"));
 
+		if (postService.count() > 0) return;
 		Post post1 = postService.write("제목 1", "내용 1");
 		Post post2 =  postService.write("제목 2", "내용 2");
 		System.out.println("기본 데이터가 초기화되었습니다.");
